@@ -21,6 +21,7 @@ export const CoffeeCup = () => {
             geometry={nodes.Coffee_Cup.geometry}
             material={nodes.Coffee_Cup.material}
             userData={{ name: "Coffee Cup" }}
+            position={[0,2,0]}
           />
         </group>
       </group>
