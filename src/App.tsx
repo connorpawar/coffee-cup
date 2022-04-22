@@ -28,7 +28,6 @@ export default function App() {
         width={5}
         height={5}
         position={[-3, 4, 1]}
-        target={[0, 0, 0]}
         visible={false}
       />
       <OrbitControls autoRotate />
