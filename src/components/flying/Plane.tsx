@@ -71,7 +71,7 @@ export function CockPit() {
   return (
     <mesh castShadow receiveShadow ref={r}>
       <boxGeometry attach="geometry" args={[60, 50, 50, 1, 1, 1]}></boxGeometry>
-      <meshPhongMaterial attach="material" color={Colors.red} flatShading />
+      <meshPhongMaterial attach="material" color={Colors.blue} flatShading />
     </mesh>
   );
 }
@@ -89,7 +89,7 @@ function Tail() {
   return (
     <mesh position={[-35, 25, 0]} castShadow receiveShadow>
       <boxGeometry attach="geometry" args={[15, 20, 5, 1, 1, 1]}></boxGeometry>
-      <meshPhongMaterial attach="material" color={Colors.red} flatShading />
+      <meshPhongMaterial attach="material" color={Colors.blue} flatShading />
     </mesh>
   );
 }
@@ -98,7 +98,7 @@ function Wing() {
   return (
     <mesh castShadow receiveShadow>
       <boxGeometry attach="geometry" args={[40, 8, 150, 1, 1, 1]}></boxGeometry>
-      <meshPhongMaterial attach="material" color={Colors.red} flatShading />
+      <meshPhongMaterial attach="material" color={Colors.blue} flatShading />
     </mesh>
   );
 }
