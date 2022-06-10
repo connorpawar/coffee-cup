@@ -6,7 +6,7 @@ import {
   useThree,
 } from "@react-three/fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { Vector3 } from "three";
+import { TOUCH, Vector3 } from "three";
 import Plane from "./plane";
 import { Sea, Sky } from "./terrain";
 
@@ -27,6 +27,11 @@ const CameraControls = () => {
       args={[camera, domElement]}
       minDistance={250}
       maxDistance={250}
+	  enablePan={false}
+	  touches={{
+		  ONE: TOUCH.PAN,
+		  TWO: TOUCH.DOLLY_ROTATE
+	  }}
     />
   );
 };
