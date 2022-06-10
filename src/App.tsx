@@ -1,6 +1,4 @@
-
-import * as React from "react";
-import Scene from "./components/flying/Scene";
+import Scene from "./components/Scene";
 
 export default function App() {
   return (

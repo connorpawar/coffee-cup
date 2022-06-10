@@ -1,22 +1,12 @@
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Colors } from "./Colors";
+import { Colors } from "../../lib/colors";
 import { Vector3 } from "three";
 import { useGLTF } from "@react-three/drei";
-import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
+import { CloudProps, GLTFResult, SkyProps } from "../../lib/types";
 
 const n = 20;
 var stepAngle = (Math.PI * 2) / n;
-
-interface SkyProps {
-	position: Vector3;
-	rotationSpeed: number;
-}
-
-interface CloudProps {
-	position: Vector3;
-	rotationZ?: number;
-}
 
 export default function Sky({ position, rotationSpeed }: SkyProps) {
   const r = useRef<any>();
@@ -27,25 +17,17 @@ export default function Sky({ position, rotationSpeed }: SkyProps) {
     <group position={position} ref={r}>
       {new Array(n).fill(0).map((_, i) => {
         let angle = stepAngle * i;
-        // distance from center
-        let h = 300 + Math.random() * 80;
+        let radius = 300 + Math.random() * 80;
         let position = new Vector3(
-          Math.cos(angle) * h,
-          Math.sin(angle) * h,
+          Math.cos(angle) * radius,
+          Math.sin(angle) * radius,
           Math.random() * 100
-		);
+        );
         return <Cloud key={i} position={position} />;
       })}
     </group>
   );
 }
-
-type GLTFResult = GLTF & {
-	nodes: {
-	  Coffee_Cup: THREE.Mesh;
-	};
-	materials: {};
-  };
 
 function Cloud({ position, rotationZ }: CloudProps) {
   let nBlocs = 2 + Math.floor(Math.random() * 3);
@@ -61,7 +43,7 @@ function Cloud({ position, rotationZ }: CloudProps) {
           <mesh
             receiveShadow
             position={pos}
-			geometry={nodes.Coffee_Cup.geometry}
+            geometry={nodes.Coffee_Cup.geometry}
             rotation-x={rotationX}
             rotation-y={rotationY}
             scale={[s, s, s]}
@@ -78,3 +60,5 @@ function Cloud({ position, rotationZ }: CloudProps) {
     </group>
   );
 }
+
+useGLTF.preload("./cup.gltf");
