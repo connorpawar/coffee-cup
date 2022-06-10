@@ -36,7 +36,7 @@ const CameraControls = () => {
   );
 };
 
-const rotationSpeed = 0.01;
+const rotationSpeed = 0.005;
 const Scene = () => {
   return (
     <Canvas camera={{ position: [0, 0, 190] }}>
