@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Colors } from "../../lib/colors";
 import { Vector3 } from "three";
@@ -10,21 +10,24 @@ var stepAngle = (Math.PI * 2) / n;
 
 export default function Sky({ position, rotationSpeed }: SkyProps) {
   const r = useRef<any>();
+  const [cups, setCups] = useState(
+    new Array(n).fill(0).map((_, i) => {
+      let angle = stepAngle * i;
+      let radius = 300 + Math.random() * 80;
+      let position = new Vector3(
+        Math.cos(angle) * radius,
+        Math.sin(angle) * radius,
+        Math.random() * 100
+      );
+      return <Cloud key={i} position={position} />;
+    })
+  );
   useFrame(() => {
     r.current.rotation.z += rotationSpeed;
   });
   return (
     <group position={position} ref={r}>
-      {new Array(n).fill(0).map((_, i) => {
-        let angle = stepAngle * i;
-        let radius = 300 + Math.random() * 80;
-        let position = new Vector3(
-          Math.cos(angle) * radius,
-          Math.sin(angle) * radius,
-          Math.random() * 100
-        );
-        return <Cloud key={i} position={position} />;
-      })}
+      {cups}
     </group>
   );
 }
